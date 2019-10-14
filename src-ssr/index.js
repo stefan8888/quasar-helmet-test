@@ -30,7 +30,7 @@ const serve = (path, cache) => express.static(ssr.resolveWWW(path), {
 app.use(compression({ threshold: 0 }))
 app.use(helmet())
 
-// Expected CSP settings
+// Expected CSP settings (causing errors)
 app.use(helmet.contentSecurityPolicy({
   directives: {
     fontSrc: ["'self'"],
@@ -41,6 +41,30 @@ app.use(helmet.contentSecurityPolicy({
   }
   // reportOnly: true
 }))
+
+// Chrome CSP settings (no errors)
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     fontSrc: ["'self'"],
+//     imgSrc: ["'self'"],
+//     scriptSrc: ["'self'"],
+//     styleSrc: ["'self'", "'unsafe-inline'"],
+//     reportUri: '/report-violation'
+//   }
+//   // reportOnly: true
+// }))
+
+// Firefox CSP settings (no errors)
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     fontSrc: ["'self'"],
+//     imgSrc: ["'self'"],
+//     scriptSrc: ["'self'", "'unsafe-eval'"],
+//     styleSrc: ["'self'", "'unsafe-inline'"],
+//     reportUri: '/report-violation'
+//   }
+//   // reportOnly: true
+// }))
 
 // serve this with no cache, if built with PWA:
 if (ssr.settings.pwa) {
