@@ -42,24 +42,12 @@ app.use(helmet.contentSecurityPolicy({
   // reportOnly: true
 }))
 
-// Chrome CSP settings (no errors)
+// CSP settings (no errors)
 // app.use(helmet.contentSecurityPolicy({
 //   directives: {
 //     fontSrc: ["'self'"],
 //     imgSrc: ["'self'"],
 //     scriptSrc: ["'self'"],
-//     styleSrc: ["'self'", "'unsafe-inline'"],
-//     reportUri: '/report-violation'
-//   }
-//   // reportOnly: true
-// }))
-
-// Firefox CSP settings (no errors)
-// app.use(helmet.contentSecurityPolicy({
-//   directives: {
-//     fontSrc: ["'self'"],
-//     imgSrc: ["'self'"],
-//     scriptSrc: ["'self'", "'unsafe-eval'"],
 //     styleSrc: ["'self'", "'unsafe-inline'"],
 //     reportUri: '/report-violation'
 //   }
